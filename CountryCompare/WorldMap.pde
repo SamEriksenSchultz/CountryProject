@@ -7,7 +7,7 @@ class WorldMap {
   }
   
   void loadCountries(){
-    JSONArray data=loadJSONArray("Desktop/CountryCompare/countryCompareData.json");
+    JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject-master\\CountryCompare\\countryCompareData.json");
     for(int i=0;i<227;i++){
       Country c=new Country(data.getJSONObject(i));
       worldMap.put(c.getCountryName(),c);

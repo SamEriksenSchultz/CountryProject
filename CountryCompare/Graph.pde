@@ -1,8 +1,9 @@
+
 class Graph {
- 
+ List<Button> buttons; 
   
   Graph(){
-    
+    buttons = new ArrayList<Button>();
   }
   
   void display(){
@@ -52,14 +53,30 @@ class Graph {
   
   void drawSelect(){
     noStroke();
-    fill(150);
-    rect(175,700,115,50);
+    
     
     for(int i=0;i<18;i++){
+      float y;
+      float x;
+      if(i < 9){
+        y=780;
+        x=200+i*180;
+      } else {
+        y=900;
+        int temp=i;
+        i-=9;
+        x=200+i*180;
+        i=temp;
+      }
       
-      int y=0;
-      if(i<9)y=725;
-      rect(175+i*200,725,115,50);
+        
+      
+      
+      Button b=new Button(x,y, "test");
+      buttons.add(b);
+      b.display();
+      
+     
     }
   }
   void varSelect(){
