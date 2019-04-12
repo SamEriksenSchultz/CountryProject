@@ -2,7 +2,7 @@ class Country implements Comparable<Country> {
   
   String country,region;
   int population,area,gdp;
-  double density,migration,infants,literacy,phones,arable,crops,
+  float density,migration,infants,literacy,phones,arable,crops,
   other,climate,birthrate,deathrate,agriculture,industry,service;
   
   Country(JSONObject countryData){
@@ -32,22 +32,22 @@ class Country implements Comparable<Country> {
     for(int i=0; i<14; i++)fuckEurope[i]=fuckEurope[i].replace(",",".");
      
     
-    print(fuckEurope);
+    //print(fuckEurope);
     
-    density=Double.parseDouble(fuckEurope[0]);
-    migration=Double.parseDouble(fuckEurope[1]);
-    infants=Double.parseDouble(fuckEurope[2]);
-    literacy=Double.parseDouble(fuckEurope[3]);
-    phones=Double.parseDouble(fuckEurope[4]);
-    arable=Double.parseDouble(fuckEurope[5]);
-    crops=Double.parseDouble(fuckEurope[6]);
-    other=Double.parseDouble(fuckEurope[7]);
-    climate=Double.parseDouble(fuckEurope[8]);
-    birthrate=Double.parseDouble(fuckEurope[9]);
-    deathrate=Double.parseDouble(fuckEurope[10]);
-    agriculture=Double.parseDouble(fuckEurope[11]);
-    industry=Double.parseDouble(fuckEurope[12]);
-    service=Double.parseDouble(fuckEurope[13]);
+    density=Float.parseFloat(fuckEurope[0]);
+    migration=Float.parseFloat(fuckEurope[1]);
+    infants=Float.parseFloat(fuckEurope[2]);
+    literacy=Float.parseFloat(fuckEurope[3]);
+    phones=Float.parseFloat(fuckEurope[4]);
+    arable=Float.parseFloat(fuckEurope[5]);
+    crops=Float.parseFloat(fuckEurope[6]);
+    other=Float.parseFloat(fuckEurope[7]);
+    climate=Float.parseFloat(fuckEurope[8]);
+    birthrate=Float.parseFloat(fuckEurope[9]);
+    deathrate=Float.parseFloat(fuckEurope[10]);
+    agriculture=Float.parseFloat(fuckEurope[11]);
+    industry=Float.parseFloat(fuckEurope[12]);
+    service=Float.parseFloat(fuckEurope[13]);
     
   
   }
@@ -59,6 +59,10 @@ class Country implements Comparable<Country> {
   String getCountryName(){
     return country;
   }
+  
+  /*double getData(String var){
+    return this.var;
+  }*/
   
   String toString(){
     return country +"\n"+region +"\n"+population+"\n"+area+"\n"+gdp+"\n"+density+"\n"+migration+"\n"+infants+"\n"+literacy+"\n"+phones+"\n"+arable+"\n"+crops+"\n"+other+"\n"+climate+"\n"+birthrate+"\n"+deathrate+"\n"+agriculture+"\n"+industry+"\n"+service;

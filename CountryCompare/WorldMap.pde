@@ -1,6 +1,6 @@
+Map<String,Country>worldMap;
+
 class WorldMap {
-  
-  Map<String,Country>worldMap;
   
   WorldMap(){
     worldMap=new TreeMap<String,Country>();
