@@ -59,6 +59,20 @@ class Country implements Comparable<Country> {
   String getCountryName(){
     return country;
   }
+  Float getVariable(String var) {
+    /*if(var == "population") 
+      return population;
+    if(var == "area")
+      return area;
+    if(var == "gdp")
+      return gdp;*/
+    if(var == "density")
+      return density;
+    return null;
+    
+    
+    
+  }
   
   /*double getData(String var){
     return this.var;

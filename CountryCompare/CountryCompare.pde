@@ -18,6 +18,11 @@ void setup(){
   g.display();
 }
 
-void mouseClicked(){
+void draw(){
+  
+}
+
+void mousePressed(){
+  print("click");
   g.varSelect();
 }
