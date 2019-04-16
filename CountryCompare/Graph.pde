@@ -26,7 +26,7 @@ class Graph {
     vars[15]="industry";
     vars[16]="service";
     
-    current="density";
+    current="";
   }
   
   
@@ -53,39 +53,74 @@ class Graph {
     float x=2.5;
     float y;
     
-    float min=0;
+    
     float max=0;
-    float total=0;
     float index=1;
     
     
-    
-      for(String s:worldMap.keySet()){
-          float temp=worldMap.get(s).getVariable(current);
-          if(temp>max)max=temp;
-      total+=temp;
-    }
-     
     for(String s:worldMap.keySet()){
       float temp=worldMap.get(s).getVariable(current);
-      y=(temp/max)*-500;
-      stroke(255,0,0);  
-      rect(index*7.5+159,645,1,y);
-      //println(temp +", " +y);
-      index++;
+      if(temp>max)
+        max=temp;
+      
     }
     
+    if(current == "population" || current == "area" || current == "gdp"){
+      max=0;
+      for(String s:worldMap.keySet()){
+        int temp=worldMap.get(s).getVariableInt(current);
+        if(temp>max)max=temp;
+      }
+      for(String s:worldMap.keySet()){
+        float temp=worldMap.get(s).getVariableInt(current);
+        y=(temp/max)*-500;
+        stroke(255,0,0);  
+        rect(index*7.5+159,645,1,y);
+        //println(temp +", " +y);
+        index++;
+      }
+    }
+    if(current == "migration") {
+      for(String s:worldMap.keySet()){
+        float temp=worldMap.get(s).getVariable(current);
+        y=(temp/max)*-250;
+        stroke(255,0,0);  
+        rect(index*7.5+159,375,1,y);
+        //println(temp +", " +y);
+        index++;
+      }
+      text((int)max *-1,110,650);
+      text(0,120,375);
+      text((int)max,110,100);
+    } else {
+      for(String s:worldMap.keySet()){
+        float temp=worldMap.get(s).getVariable(current);
+        y=(temp/max)*-500;
+        stroke(255,0,0);  
+        rect(index*7.5+159,645,1,y);
+        //println(temp +", " +y);
+        index++;
+      }
+      text(0,120,650);
+      text((int)max,110,100);
+    }
+    translate(100,375);
+    rotate(-HALF_PI);
+    text(current,0,0);
+    rotate(HALF_PI);
+    translate(-100,-375);
     
-    text((int)min,120,650);
-    text((int)max,110,100);
+    
   }
   
   void updateAllButtons(){
     for(String s:buttons.keySet()){
         buttons.get(s).display();
-        if(buttons.get(s).active())current=s;
+        if(buttons.get(s).active())
+          current=s;
     }
   }
+  
   void drawSelect(){
     noStroke();
     
@@ -102,10 +137,7 @@ class Graph {
         x=325+i*180;
         i=temp;
       }
-      
-        
-      
-      
+            
       Button b=new Button(x,y,vars[i]);
       buttons.put(vars[i],b);
       b.display();
@@ -119,5 +151,6 @@ class Graph {
     }
     
     updateAllButtons();
+    
   }
 }

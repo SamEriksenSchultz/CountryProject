@@ -18,11 +18,12 @@ class Button {
   
   public void display() {
     if(!active)
-    fill(150);
-    else fill(150,0,0);
-    rect(x, y, 150, 65);
-    fill(255);
-    text(p,x+25,y+25);  
+      fill(150);
+    else 
+      fill(150,0,0);
+      rect(x, y, 150, 65);
+      fill(255);
+      text(p,x+25,y+25);  
   }
   
   boolean testClicked(float mx, float my){

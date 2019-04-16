@@ -59,16 +59,49 @@ class Country implements Comparable<Country> {
   String getCountryName(){
     return country;
   }
-  Float getVariable(String var) {
-    /*if(var == "population") 
+  
+  int getVariableInt(String var){
+    if(var == "population") 
       return population;
-    if(var == "area")
+    else if(var == "area")
       return area;
-    if(var == "gdp")
-      return gdp;*/
+    else if(var == "gdp")
+      return gdp;
+    return 0;
+  }
+  
+  Float getVariable(String var) {
+    
     if(var == "density")
       return density;
-    return null;
+    else if(var == "migration")
+      return migration;
+    else if(var == "infants")
+      return infants;
+    else if(var == "literacy")
+      return literacy;
+    else if(var == "phones")
+      return phones;
+    else if(var == "arable")
+      return arable;
+    else if(var == "crops")
+      return crops;
+    else if(var == "other")
+      return other;
+    else if(var == "climate")
+      return climate;
+    else if(var == "birthrate")
+      return birthrate;
+    else if(var == "deathrate")
+      return deathrate;
+    else if(var == "agriculture")
+      return agriculture;
+    else if(var == "industry")
+      return industry;
+    else if(var == "service")
+      return service;
+    else 
+      return 0.0;
     
     
     

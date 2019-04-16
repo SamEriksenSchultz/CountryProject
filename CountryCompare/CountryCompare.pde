@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import java.util.Iterator;
 import java.util.List;
 
-Graph g;
+Graph g = new Graph();
 
 void setup(){
   WorldMap wm=new WorldMap();
@@ -14,15 +14,16 @@ void setup(){
   
 
   size(1920,1080);
-  g=new Graph();
-  g.display();
-}
-
-void draw(){
+  //g=new Graph();
+  //g.display();
   
 }
 
-void mousePressed(){
+void draw(){
+  g.display();
+}
+
+void mouseClicked(){
   print("click");
   g.varSelect();
 }
