@@ -1,16 +1,28 @@
 class Country implements Comparable<Country> {
   
   String country,region;
-  int population,area,gdp;
+  float population,area,gdp;
   float density,migration,infants,literacy,phones,arable,crops,
   other,climate,birthrate,deathrate,agriculture,industry,service;
   
+  float xPos,yPos,l,w;
+  
+  boolean active;
+  
   Country(JSONObject countryData){
+    
+    xPos=0;
+    yPos=0;
+    l=0;
+    w=0;
+    
+    active=false;
+    
     country = countryData.getString("Country");
     region = countryData.getString("Region");
-    population = countryData.getInt("Population");
-    area = countryData.getInt("Area (sq. mi.)");
-    gdp = countryData.getInt("GDP ($ per capita)");
+    population = (float)countryData.getInt("Population");
+    area = (float)countryData.getInt("Area (sq. mi.)");
+    gdp = (float)countryData.getInt("GDP ($ per capita)");
     
     String[]fuckEurope=new String[14];
     
@@ -60,18 +72,15 @@ class Country implements Comparable<Country> {
     return country;
   }
   
-  int getVariableInt(String var){
+  
+  
+  Float getVariable(String var) {
     if(var == "population") 
       return population;
     else if(var == "area")
       return area;
     else if(var == "gdp")
       return gdp;
-    return 0;
-  }
-  
-  Float getVariable(String var) {
-    
     if(var == "density")
       return density;
     else if(var == "migration")
@@ -107,9 +116,24 @@ class Country implements Comparable<Country> {
     
   }
   
-  /*double getData(String var){
-    return this.var;
-  }*/
+  void display(float x, float y, float w, float l){
+    if(active)fill(0,0,255);
+    else fill(255,0,0);
+    
+    
+    rect(x,y,w,l);
+    xPos=x;
+    yPos=y;
+    this.l=l;
+    this.w=w;
+  }
+  
+  void testCollision(){
+    if(mouseX>xPos && xPos+w>mouseX && mouseY<650){
+      print(country);
+      active=true;
+    }else active=false;
+  }
   
   String toString(){
     return country +"\n"+region +"\n"+population+"\n"+area+"\n"+gdp+"\n"+density+"\n"+migration+"\n"+infants+"\n"+literacy+"\n"+phones+"\n"+arable+"\n"+crops+"\n"+other+"\n"+climate+"\n"+birthrate+"\n"+deathrate+"\n"+agriculture+"\n"+industry+"\n"+service;

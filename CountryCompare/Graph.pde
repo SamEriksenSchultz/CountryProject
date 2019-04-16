@@ -33,12 +33,13 @@ class Graph {
   
   void display(){
     background(0);
-    bar("");
-    axis("");
+    viewAdvancedStats();
+    bar();
+    axis();
     drawSelect();
   }
   
-  void axis(String yLabel){
+  void axis(){
     stroke(255);
     strokeWeight(5);
     line(160,650,1865,650);
@@ -48,7 +49,7 @@ class Graph {
     text("Countries",900,700);   
   }
   
-  void bar(String var){
+  void bar(){
   
     float x=2.5;
     float y;
@@ -64,29 +65,13 @@ class Graph {
         max=temp;
       
     }
-    
-    if(current == "population" || current == "area" || current == "gdp"){
-      max=0;
-      for(String s:worldMap.keySet()){
-        int temp=worldMap.get(s).getVariableInt(current);
-        if(temp>max)max=temp;
-      }
-      for(String s:worldMap.keySet()){
-        float temp=worldMap.get(s).getVariableInt(current);
-        y=(temp/max)*-500;
-        stroke(255,0,0);  
-        rect(index*7.5+159,645,1,y);
-        //println(temp +", " +y);
-        index++;
-      }
-    }
+
     if(current == "migration") {
       for(String s:worldMap.keySet()){
         float temp=worldMap.get(s).getVariable(current);
         y=(temp/max)*-250;
-        stroke(255,0,0);  
-        rect(index*7.5+159,375,1,y);
-        //println(temp +", " +y);
+        //rect(index*7.5+159,375,1,y);
+        worldMap.get(s).display(index*7.5+159,375,6,y);
         index++;
       }
       text((int)max *-1,110,650);
@@ -96,11 +81,11 @@ class Graph {
       for(String s:worldMap.keySet()){
         float temp=worldMap.get(s).getVariable(current);
         y=(temp/max)*-500;
-        stroke(255,0,0);  
-        rect(index*7.5+159,645,1,y);
-        //println(temp +", " +y);
+        //rect(index*7.5+159,645,1,y);
+        worldMap.get(s).display(index*7.5+159,645,6,y);
         index++;
       }
+      fill(255);
       text(0,120,650);
       text((int)max,110,100);
     }
@@ -152,5 +137,11 @@ class Graph {
     
     updateAllButtons();
     
+  }
+  
+  void viewAdvancedStats(){
+    for(String s:worldMap.keySet()){
+      worldMap.get(s).testCollision();
+    }
   }
 }
