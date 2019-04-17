@@ -33,9 +33,10 @@ class Graph {
   
   void display(){
     background(0);
-    viewAdvancedStats();
+    
     bar();
     axis();
+    viewAdvancedStats();
     drawSelect();
   }
   
@@ -70,10 +71,10 @@ class Graph {
       for(String s:worldMap.keySet()){
         float temp=worldMap.get(s).getVariable(current);
         y=(temp/max)*-250;
-        //rect(index*7.5+159,375,1,y);
         worldMap.get(s).display(index*7.5+159,375,6,y);
         index++;
       }
+      fill(255);
       text((int)max *-1,110,650);
       text(0,120,375);
       text((int)max,110,100);
@@ -81,7 +82,6 @@ class Graph {
       for(String s:worldMap.keySet()){
         float temp=worldMap.get(s).getVariable(current);
         y=(temp/max)*-500;
-        //rect(index*7.5+159,645,1,y);
         worldMap.get(s).display(index*7.5+159,645,6,y);
         index++;
       }
@@ -142,6 +142,16 @@ class Graph {
   void viewAdvancedStats(){
     for(String s:worldMap.keySet()){
       worldMap.get(s).testCollision();
+      if(worldMap.get(s).active == true && mousePressed == true) {
+        fill(150);
+        noStroke();
+        rect(worldMap.get(s).xPos-150,100,300,300);
+        fill(255);
+        text("Country: " + worldMap.get(s).country, worldMap.get(s).xPos-140,130);
+        text(current + ": " + worldMap.get(s).getVariable(current), worldMap.get(s).xPos-140,160);
+        
+      }
     }
+    
   }
 }
