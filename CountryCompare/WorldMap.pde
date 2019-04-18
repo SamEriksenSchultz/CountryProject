@@ -1,23 +1,25 @@
-Map<String,Country>worldMap;
-
+Map<String,Country>UnsortedWorldMap;
+//Map<String,Country>SortedWorldMap;
 class WorldMap {
   
   WorldMap(){
-    worldMap=new TreeMap<String,Country>();
+    UnsortedWorldMap=new TreeMap<String,Country>();
+    //SortedWorldMap=new TreeMap<String,Country>();
   }
   
   void loadCountries(){
-    JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject-master\\CountryCompare\\countryCompareData.json");
+    //JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject-master\\CountryCompare\\countryCompareData.json");
+    JSONArray data=loadJSONArray("Desktop/CountryProject-master/CountryCompare/countryCompareData.json");
     for(int i=0;i<227;i++){
       Country c=new Country(data.getJSONObject(i));
-      worldMap.put(c.getCountryName(),c);
+      UnsortedWorldMap.put(c.getCountryName(),c);
     }
     
   }
   
   String toString(){
     String fin="";
-    for(String s:worldMap.keySet()){
+    for(String s:UnsortedWorldMap.keySet()){
       fin+=s;
     }
     return fin;

@@ -4,8 +4,14 @@ class Graph {
   Map<String,Button>buttons; 
   String[]vars;
   String current;
+  float[]vals;
+  float mu;
+  float sigma;
+
   
   Graph(){
+
+    vals=new float[237];
     buttons = new HashMap<String,Button>();
     vars=new String[17];
     vars[0]="population";
@@ -33,7 +39,6 @@ class Graph {
   
   void display(){
     background(0);
-    
     bar();
     axis();
     viewAdvancedStats();
@@ -59,19 +64,23 @@ class Graph {
     float max=0;
     float index=1;
     
-    
-    for(String s:worldMap.keySet()){
-      float temp=worldMap.get(s).getVariable(current);
+    int i=0;
+    for(String s:UnsortedWorldMap.keySet()){
+      i++;
+      float temp=UnsortedWorldMap.get(s).getVariable(current);
+      vals[i]=temp;
       if(temp>max)
         max=temp;
       
     }
+    
+    
 
     if(current == "migration") {
-      for(String s:worldMap.keySet()){
-        float temp=worldMap.get(s).getVariable(current);
+      for(String s:UnsortedWorldMap.keySet()){
+        float temp=UnsortedWorldMap.get(s).getVariable(current);
         y=(temp/max)*-250;
-        worldMap.get(s).display(index*7.5+159,375,6,y);
+        UnsortedWorldMap.get(s).display(index*7.5+159,375,6,y);
         index++;
       }
       fill(255);
@@ -79,10 +88,10 @@ class Graph {
       text(0,120,375);
       text((int)max,110,100);
     } else {
-      for(String s:worldMap.keySet()){
-        float temp=worldMap.get(s).getVariable(current);
+      for(String s:UnsortedWorldMap.keySet()){
+        float temp=UnsortedWorldMap.get(s).getVariable(current);
         y=(temp/max)*-500;
-        worldMap.get(s).display(index*7.5+159,645,6,y);
+        UnsortedWorldMap.get(s).display(index*7.5+159,645,6,y);
         index++;
       }
       fill(255);
@@ -110,6 +119,7 @@ class Graph {
     noStroke();
     
     for(int i=0;i<16;i++){
+
       float y;
       float x;
       if(i < 8){
@@ -126,7 +136,7 @@ class Graph {
       Button b=new Button(x,y,vars[i]);
       buttons.put(vars[i],b);
       b.display();
-      
+
      
     }
   }
@@ -139,19 +149,47 @@ class Graph {
     
   }
   
+  void stats(){
+    
+  }
+  
   void viewAdvancedStats(){
-    for(String s:worldMap.keySet()){
-      worldMap.get(s).testCollision();
-      if(worldMap.get(s).active == true && mousePressed == true) {
+    for(String s:UnsortedWorldMap.keySet()){
+      UnsortedWorldMap.get(s).testCollision();
+      if(UnsortedWorldMap.get(s).active == true && mousePressed == true) {
         fill(150);
         noStroke();
-        rect(worldMap.get(s).xPos-150,100,300,300);
+        rect(UnsortedWorldMap.get(s).xPos-150,100,300,300);
         fill(255);
-        text("Country: " + worldMap.get(s).country, worldMap.get(s).xPos-140,130);
-        text(current + ": " + worldMap.get(s).getVariable(current), worldMap.get(s).xPos-140,160);
+        text("Country: " + UnsortedWorldMap.get(s).country, UnsortedWorldMap.get(s).xPos-140,130);
+        text(current + ": " + UnsortedWorldMap.get(s).getVariable(current), UnsortedWorldMap.get(s).xPos-140,160);
         
       }
     }
-    
+    calculateSD();
   }
+
+
+
+    void calculateSD()
+    {
+        float sum = 0.0, standardDeviation = 0.0;
+        int length = vals.length;
+
+        for(float num : vals) {
+            sum += num;
+        }
+
+        mu = sum/length;
+
+        for(float num: vals) {
+            standardDeviation += Math.pow(num - mu, 2);
+        }
+
+        sigma = (float)Math.sqrt(standardDeviation/(length-1));
+        text("μ = "+mu,50,800);
+        text("σ = "+sigma,50,850);
+    }
+
+  
 }

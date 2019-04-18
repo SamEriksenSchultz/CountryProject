@@ -8,8 +8,11 @@ class Country implements Comparable<Country> {
   float xPos,yPos,l,w;
   
   boolean active;
+  String current;
   
   Country(JSONObject countryData){
+    
+    current="population";
     
     xPos=0;
     yPos=0;
@@ -75,6 +78,7 @@ class Country implements Comparable<Country> {
   
   
   Float getVariable(String var) {
+    current=var;
     if(var == "population") 
       return population;
     else if(var == "area")
@@ -130,7 +134,6 @@ class Country implements Comparable<Country> {
   
   void testCollision(){
     if(mouseX>xPos && xPos+w>mouseX && mouseY<650){
-      print(country);
       active=true;
     }else active=false;
   }
