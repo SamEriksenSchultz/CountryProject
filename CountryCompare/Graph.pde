@@ -1,19 +1,19 @@
-
+  String[]vars;
+  
 class Graph {
   
   Map<String,Button>buttons; 
-  String[]vars;
   String current;
   float[]vals;
   float mu;
   float sigma;
 
+  boolean sorted;
   
   Graph(){
+    
+   vars=new String[17];
 
-    vals=new float[237];
-    buttons = new HashMap<String,Button>();
-    vars=new String[17];
     vars[0]="population";
     vars[1]="area";
     vars[2]="gdp";
@@ -31,6 +31,10 @@ class Graph {
     vars[14]="agriculture";
     vars[15]="industry";
     vars[16]="service";
+    sorted=false;
+    vals=new float[237];
+    buttons = new HashMap<String,Button>();
+    
     
     current="";
   }
@@ -64,6 +68,8 @@ class Graph {
     float index=1;
     
     int i=0;
+    
+    
     for(String s:UnsortedWorldMap.keySet()){
       i++;
       float temp=UnsortedWorldMap.get(s).getVariable(current);
@@ -91,9 +97,11 @@ class Graph {
         y=(temp/max)*-500;
         UnsortedWorldMap.get(s).display(index*7.5+159,645,6,y);
         index++;
+        }
       }
-    }
     
+    
+
     
    if(current == "agriculture" || current == "industry") {
      fill(255);
@@ -104,7 +112,8 @@ class Graph {
      text(0,120,650);
      text((int)max,110,100);
    }
-   
+
+  
    String yLabel;
    if(current == "population")
      yLabel = "Population";
@@ -194,10 +203,7 @@ class Graph {
     updateAllButtons();
     
   }
-  
-  void stats(){
-    
-  }
+
   
   void viewAdvancedStats(){
     for(String s:UnsortedWorldMap.keySet()){
@@ -222,23 +228,30 @@ class Graph {
 
     void calculateSD()
     {
+      
         float sum = 0.0, standardDeviation = 0.0;
-        int length = vals.length;
-
+        int len = vals.length;
         for(float num : vals) {
-            sum += num;
+            if(num!=0){
+              sum += num;
+            }else len--;
         }
 
-        mu = sum/length;
+        mu = sum/len;
 
         for(float num: vals) {
+            if(num!=0)
             standardDeviation += Math.pow(num - mu, 2);
         }
 
-        sigma = (float)Math.sqrt(standardDeviation/(length-1));
+        sigma = (float)Math.sqrt(standardDeviation/(len-1));
         text("μ = "+mu,50,800);
         text("σ = "+sigma,50,850);
     }
 
   
+  
+
 }
+
+    
