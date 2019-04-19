@@ -211,13 +211,17 @@ class Graph {
       if(UnsortedWorldMap.get(s).active == true && mousePressed == true) {
         fill(150);
         noStroke();
-        rect(UnsortedWorldMap.get(s).xPos-150,100,300,300);
-        fill(255);
-        text("Country: " + UnsortedWorldMap.get(s).country, UnsortedWorldMap.get(s).xPos-140,130);
-        if(UnsortedWorldMap.get(s).getVariable(current) == 0) 
-          text(current + ": " + "n/a", UnsortedWorldMap.get(s).xPos-140,160);
+        if(mouseX > 960) 
+          displacement = -300;
         else
-          text(current + ": " + UnsortedWorldMap.get(s).getVariable(current), UnsortedWorldMap.get(s).xPos-140,160);
+          displacement = 0;
+        rect(UnsortedWorldMap.get(s).xPos + displacement,100,300,300);
+        fill(255);
+        text("Country: " + UnsortedWorldMap.get(s).country, UnsortedWorldMap.get(s).xPos + displacement,130);
+        if(UnsortedWorldMap.get(s).getVariable(current) == 0) 
+          text(current + ": " + "n/a", UnsortedWorldMap.get(s).xPos + displacement,160);
+        else
+          text(current + ": " + UnsortedWorldMap.get(s).getVariable(current), UnsortedWorldMap.get(s).xPos + displacement,160);
         
       }
     }
