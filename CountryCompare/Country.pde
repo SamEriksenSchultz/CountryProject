@@ -1,4 +1,4 @@
-class Country implements Comparable<Country> {
+ class Country implements Comparable<Country> {
   
   String country,region;
   float population,area,gdp;

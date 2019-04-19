@@ -60,7 +60,6 @@ class Graph {
     float x=2.5;
     float y;
     
-    
     float max=0;
     float index=1;
     
@@ -75,7 +74,6 @@ class Graph {
     }
     
     
-
     if(current == "migration") {
       for(String s:UnsortedWorldMap.keySet()){
         float temp=UnsortedWorldMap.get(s).getVariable(current);
@@ -94,15 +92,62 @@ class Graph {
         UnsortedWorldMap.get(s).display(index*7.5+159,645,6,y);
         index++;
       }
-      fill(255);
-      text(0,120,650);
-      text((int)max,110,100);
     }
-    translate(100,375);
+    
+    
+   if(current == "agriculture" || current == "industry") {
+     fill(255);
+     text(0,120,650);
+     text(max,110,100);
+   } else {
+     fill(255);
+     text(0,120,650);
+     text((int)max,110,100);
+   }
+   
+   String yLabel;
+   if(current == "population")
+     yLabel = "Population";
+   else if(current == "area")
+     yLabel = "Area (sq. mi.)";
+   else if(current == "gdp")
+     yLabel = "GDP ($ per capita)";
+   else if(current == "density")
+     yLabel = "Pop. Density (per sq. mi.)";
+   else if(current == "migration")
+     yLabel = "Net migration";
+   else if(current == "infants")
+     yLabel = "Infant mortality (per 1000 births)"; 
+   else if(current == "literacy")
+     yLabel = "Literacy (%)";
+   else if(current == "phones")
+     yLabel = "Phones (per 1000)";  
+   else if(current == "arable")
+     yLabel = "Arable (%)"; 
+   else if(current == "crops")
+     yLabel = "Crops (%)";
+   else if(current == "other")
+     yLabel = "Other (%)";
+   else if(current == "climate")
+     yLabel = "Climate";
+   else if(current == "birthrate")
+     yLabel = "Birthrate";
+   else if(current == "deathrate")
+     yLabel = "Deathrate";
+   else if(current == "agriculture")
+     yLabel = "Agriculture";
+   else if(current == "industry")
+     yLabel = "Industry";  
+   else if(current == "service")
+     yLabel = "Service";
+   else
+     yLabel = "";
+  
+    translate(100,475);
     rotate(-HALF_PI);
-    text(current,0,0);
+    text(yLabel,0,0);
     rotate(HALF_PI);
-    translate(-100,-375);
+    translate(-100,-475);
     
     
   }
@@ -140,6 +185,7 @@ class Graph {
      
     }
   }
+  
   void varSelect(){
     for(int i=0; i<16; i++){
       buttons.get(vars[i]).testClicked(mouseX,mouseY);
@@ -162,7 +208,10 @@ class Graph {
         rect(UnsortedWorldMap.get(s).xPos-150,100,300,300);
         fill(255);
         text("Country: " + UnsortedWorldMap.get(s).country, UnsortedWorldMap.get(s).xPos-140,130);
-        text(current + ": " + UnsortedWorldMap.get(s).getVariable(current), UnsortedWorldMap.get(s).xPos-140,160);
+        if(UnsortedWorldMap.get(s).getVariable(current) == 0) 
+          text(current + ": " + "n/a", UnsortedWorldMap.get(s).xPos-140,160);
+        else
+          text(current + ": " + UnsortedWorldMap.get(s).getVariable(current), UnsortedWorldMap.get(s).xPos-140,160);
         
       }
     }
