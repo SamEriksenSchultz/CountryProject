@@ -206,6 +206,7 @@ class Graph {
 
   
   void viewAdvancedStats(){
+    int displacement;
     for(String s:UnsortedWorldMap.keySet()){
       UnsortedWorldMap.get(s).testCollision();
       if(UnsortedWorldMap.get(s).active == true && mousePressed == true) {
@@ -228,6 +229,57 @@ class Graph {
     calculateSD();
   }
 
+  void compareStats(){
+    Map<String,Integer>reachableKeySet=set.stream().collect(HashMap::new,
+    (hashMap, s) -> hashMap.put(s, s.length()), HashMap::putAll);
+    
+    List<Float>x=new ArrayList<Float>();
+    List<Float>y=new ArrayList<Float>();
+    
+    for(int i=0;i<237;i++){
+      
+    }
+    
+    float total1=0;
+    float total2=0;
+    
+    int n=0;
+    
+    float std1;
+    float std2;
+    
+    float xbar,ybar;
+    
+    for(String s:UnsortedWorldMap.keySet()){
+      if(UnsortedWorldMap.get(s).arable!=0 && UnsortedWorldMap.get(s).population!=0){
+        n++;
+        total1+=UnsortedWorldMap.get(s).arable;
+        total2+=UnsortedWorldMap.get(s).population;
+      }
+      
+    }
+    xbar=total1/n;
+    ybar=total2/n;
+    
+    double xxbar = 0.0, yybar = 0.0, xybar = 0.0;
+        /*for (int i = 0; i < n; i++) {
+            xxbar += (x[i] - xbar) * (x[i] - xbar);
+            yybar += (y[i] - ybar) * (y[i] - ybar);
+            xybar += (x[i] - xbar) * (y[i] - ybar);
+        }*/
+        int i=0
+        while (i<n) {
+          
+            xxbar += (x[i] - xbar) * (x[i] - xbar);
+            yybar += (y[i] - ybar) * (y[i] - ybar);
+            xybar += (x[i] - xbar) * (y[i] - ybar);
+            i++;
+        }
+        double beta1 = xybar / xxbar;
+        double beta0 = ybar - beta1 * xbar;
+
+    
+  }
 
 
     void calculateSD()
