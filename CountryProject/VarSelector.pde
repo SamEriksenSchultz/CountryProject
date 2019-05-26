@@ -1,24 +1,32 @@
 class VarSelector {
   
+  //varselector's position on the plane
   PVector pos;
   
-
+  //array that represents the buttons for each selectable variable
+  Button[]buttons;
   
   VarSelector(){
-    pos=new PVector(-200,0);
-    //rect dimensions = 200,1080
-
+    pos=new PVector(-350,0);
+    
+    //creates button array, instansiates new button objects with their text and descriptions, as well as a pvector representing their position
+    //the constants on this pvector are subject to change, to reflect a better size and feel
+    buttons=new Button[16];
+    for(int i=0;i<buttons.length;i++){
+      PVector bPos=new PVector(pos.x+10,i*50+5);
+      buttons[i]=new Button(variable[i],variable[i],bPos);
+    }
   }
   
  //checks if mouse is far enough to the left to activate
- 
+  
   boolean checkActive(){
     //checks if mouse is pass the threshold
-    if(mouseX<100)
+    if(mouseX<50)
     return true;
     
     //if the mouse is pass the initial area but the menu is extended
-    else if(mouseX<250 && pos.x>-200)
+    else if(mouseX<400 && pos.x>-350)
     return true;
     
     return false;
@@ -27,7 +35,7 @@ class VarSelector {
   //
   void showMenu(){
     //sets acceleration based on the distance between the two points
-    float speed=(200-pos.x)/50;
+    float speed=(350-pos.x)/40;
     //float speed=5;
     
     
@@ -35,13 +43,23 @@ class VarSelector {
     if(checkActive()){
       if(pos.x<0)
         pos.x+=speed;
-     
-    }else if(!checkActive() && pos.x>-200){
+      if(pos.x>0)
+        pos.x=0;
+    }else if(!checkActive() && pos.x>-350){
         pos.x-=speed;
     }
     
     fill(150);
     noStroke();
-    rect(pos.x,pos.y,200,1080);
+    rect(pos.x,pos.y,350,1080);
+    
+    drawButtons();
+  }
+  
+  //draws all the buttons and their corresponding information
+  void drawButtons(){
+    for(int i=0; i<buttons.length; i++){
+      buttons[i].drawButton();
+    }
   }
 }

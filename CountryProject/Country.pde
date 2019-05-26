@@ -3,7 +3,7 @@ class Country {
   String[] stringFixer;
   String country,region;
   float population,area,gdp,density,migration,infants,literacy,phones,arable,crops,
-  other,climate,birthrate,deathrate,agriculture,industry,service;
+  other,climate,birthrate,deathrate,agriculture,industry;
   
   Country(JSONObject data){
     //set instance variables with data from the JSON file for each country
@@ -14,7 +14,7 @@ class Country {
     gdp = (float)data.getInt("GDP ($ per capita)");
     
     //create array for syntax errors, and set their values in the array
-    stringFixer = new String[14];
+    stringFixer = new String[13];
     
     stringFixer[0]=data.getString("Pop. Density (per sq. mi.)");
     stringFixer[1]=data.getString("Net migration");
@@ -29,10 +29,9 @@ class Country {
     stringFixer[10]=data.getString("Deathrate");
     stringFixer[11]=data.getString("Agriculture");
     stringFixer[12]=data.getString("Industry");
-    stringFixer[13]=data.getString("Service");
     
     //replace the commas with periods, and parse the Strings into floats
-    for(int i=0; i<14; i++)stringFixer[i]=stringFixer[i].replace(",",".");
+    for(int i=0; i<13; i++)stringFixer[i]=stringFixer[i].replace(",",".");
     
     density=Float.parseFloat(stringFixer[0]);
     migration=Float.parseFloat(stringFixer[1]);
@@ -47,7 +46,6 @@ class Country {
     deathrate=Float.parseFloat(stringFixer[10]);
     agriculture=Float.parseFloat(stringFixer[11]);
     industry=Float.parseFloat(stringFixer[12]);
-    service=Float.parseFloat(stringFixer[13]);
   }
   
   float getVariable(String var) {
@@ -83,8 +81,6 @@ class Country {
       return agriculture;
     else if(var == "industry")
       return industry;
-    else if(var == "service")
-      return service;
     else 
       return 0.0;
   }
