@@ -50,7 +50,7 @@ class VarSelector {
         pos.x-=speed;
     }
     
-    fill(#A2CDF2);
+    fill(#404040);
     noStroke();
     rect(pos.x,pos.y,350,1080);
     

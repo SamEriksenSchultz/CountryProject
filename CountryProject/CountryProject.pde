@@ -61,13 +61,13 @@ void setup() {
   variableDescription.put("Industry","tbd");
   
   size(1920,1080);
-  background(0);
+  background(#292929);
   loadCountries();
   //for(int i=0;i<variable.length;i++)println(variable[i]);
 }
 
 void draw() {
-  background(#05147D);
+  background(#292929);
   bg.loadBars();
   bg.drawGraph();
   bg.drawBars();

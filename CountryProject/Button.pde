@@ -40,12 +40,17 @@ class Button {
   void drawButton(){
     //updates the button to the position of the VarSelector
     position.x=vs.pos.x+10;
-    if(active)
-      fill(#4192D9);
-    else fill(#5FA0D9);
-    rect(position.x,position.y,len,wid);
-    fill(255);
-    text(variable,position.x+5,position.y+5,position.x+len-5,position.y+wid-5);
+    if(active){
+      fill(200);
+      rect(position.x,position.y,len,wid);
+      fill(0);
+      text(variable,position.x+5,position.y+5,position.x+len-5,position.y+wid-5);
+    } else {
+      fill(#C44919);
+      rect(position.x,position.y,len,wid);
+      fill(255);
+      text(variable,position.x+5,position.y+5,position.x+len-5,position.y+wid-5);
+    }
   }
   
   

@@ -4,6 +4,8 @@ class BarGraph {
   
   String varCurrent;
   
+  float mean,sigma;
+  
   BarGraph(){
     varCurrent="";
     bars=new Bar[227];
@@ -20,14 +22,28 @@ class BarGraph {
     }
   }
   
+  
   //responsible for final graphing elements
   void drawGraph(){
-    stroke(#35459E);
+    stroke(#7A7A7A);
     strokeWeight(5);
+    //draws x axis
     line(130,925,1865,925);
+    
+    //draws y axis
     line(130,250,130,925);
-    textSize(25);
+    
+    //draws descriptive stats in the top right
     fill(255);
+    
+    //don't display if there's no bars on the screen
+    if(varCurrent!=""){
+      text("μ="+mean,1690,50);
+      text("σ="+sigma,1690,80);
+    }
+    
+    //draws horizontal axis label
+    textSize(25);
     text("Countries",900,960);  
   }
   
@@ -37,10 +53,14 @@ class BarGraph {
     for(int i=0;i<bars.length;i++){
       //calculate proprotional bar height based on the max value of the dataset, accounting for graph size
       y=bars[i].getCountryData(varCurrent)/getMax(varCurrent)*-675;
-      
       //iterates through bar array and displays them
       bars[i].display(i*7.5+159,920,6,y);
     }
+    
+    //draw advanced stats after to prevent them from being covered by later bars
+    //checks if the bar is active, if it is then display the advanced stats
+    for(int i=0;i<bars.length;i++)if(bars[i].active)bars[i].displaySpecifics();
+
   }
   
   //returns the max float value for the given string variable (used to calculate proprotional bar height
@@ -51,7 +71,27 @@ class BarGraph {
       if(compare>temp)
       temp=compare;
     }
+    //used to get sigma and mean, to display in drawGraph()
+    calculateStats();
     return temp;
+  }
+  
+  //calculates standard deviation and mean, to be displayed on screen
+  void calculateStats(){
+    float sum = 0.0, standardDeviation = 0.0;
+        int length = bars.length;
+
+        for(Bar b : bars) {
+            sum += b.getCountryData(varCurrent);
+        }
+
+        mean = sum/length;
+
+        for(Bar b:bars) {
+            standardDeviation += Math.pow(b.getCountryData(varCurrent) - mean, 2);
+        }
+
+    sigma=(float)Math.sqrt(standardDeviation/length);
   }
   
 
