@@ -49,37 +49,37 @@ class Country {
   }
   
   float getVariable(String var) {
-    if(var == "population") 
+    if(var == "Population") 
       return population;
-    else if(var == "area")
+    else if(var == "Area (sq. mi.)")
       return area;
-    else if(var == "gdp")
+    else if(var == "GDP ($ per capita)")
       return gdp;
-    if(var == "density")
+    if(var == "Pop. Density (per sq. mi.)")
       return density;
-    else if(var == "migration")
+    else if(var == "Net migration")
       return migration;
-    else if(var == "infants")
+    else if(var == "Infant mortality (per 1000 births)")
       return infants;
-    else if(var == "literacy")
+    else if(var == "Literacy (%)")
       return literacy;
-    else if(var == "phones")
+    else if(var == "Phones (per 1000)")
       return phones;
-    else if(var == "arable")
+    else if(var == "Arable (%)")
       return arable;
-    else if(var == "crops")
+    else if(var == "Crops (%)")
       return crops;
-    else if(var == "other")
+    else if(var == "Other (%)")
       return other;
-    else if(var == "climate")
+    else if(var == "Climate")
       return climate;
-    else if(var == "birthrate")
+    else if(var == "Birthrate")
       return birthrate;
-    else if(var == "deathrate")
+    else if(var == "Deathrate")
       return deathrate;
-    else if(var == "agriculture")
+    else if(var == "Agriculture")
       return agriculture;
-    else if(var == "industry")
+    else if(var == "Industry")
       return industry;
     else 
       return 0.0;

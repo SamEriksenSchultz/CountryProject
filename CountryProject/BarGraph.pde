@@ -22,7 +22,7 @@ class BarGraph {
   
   //responsible for final graphing elements
   void drawGraph(){
-    stroke(255);
+    stroke(#35459E);
     strokeWeight(5);
     line(130,925,1865,925);
     line(130,250,130,925);
@@ -36,7 +36,7 @@ class BarGraph {
     float y;
     for(int i=0;i<bars.length;i++){
       //calculate proprotional bar height based on the max value of the dataset, accounting for graph size
-      y=bars[i].getCountryData("area"/*varCurrent*/)/getMax("area"/*varCurrent*/)*-675;
+      y=bars[i].getCountryData(varCurrent)/getMax(varCurrent)*-675;
       
       //iterates through bar array and displays them
       bars[i].display(i*7.5+159,920,6,y);

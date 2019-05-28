@@ -13,7 +13,7 @@ class Bar {
   //draws the bar on the graph; to be called in the BarGraph class
   void display(float x,float y,float w,float h){
     noStroke();
-    fill(255,0,0);
+    fill(#0B42FF);
     rect(x,y,w,h);
   }
   

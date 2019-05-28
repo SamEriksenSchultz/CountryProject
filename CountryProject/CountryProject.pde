@@ -1,3 +1,4 @@
+
 import java.util.List;
 import java.util.Map;
 
@@ -5,7 +6,7 @@ import java.util.Map;
 List<Country>countryList=new ArrayList<Country>();
 
 //array that holds all possible variables
-String[]variable;
+String[]variable=new String[16];
 
 //map that represents the String values of all the variableDescriptions from the dataset (country, region, population, etc.), along with their coinciding explanations
 Map<String,String>variableDescription;
@@ -20,10 +21,7 @@ VarSelector vs;
 
 void setup() {
   bg=new BarGraph();
-  
-  variable=new String[16];
-  
-  vs=new VarSelector();
+      
   variable[0]="Population";
   variable[1]="Area (sq. mi.)";
   variable[2]="GDP ($ per capita)";
@@ -41,6 +39,9 @@ void setup() {
   variable[14]="Agriculture";
   variable[15]="Industry";
   
+  vs=new VarSelector();
+
+
   variableDescription=new HashMap<String,String>();
   variableDescription.put("Population","The total number of people living within the country's borders");
   variableDescription.put("Area (sq. mi.)","The total area of a given country, measured in square miles");
@@ -62,16 +63,16 @@ void setup() {
   size(1920,1080);
   background(0);
   loadCountries();
+  //for(int i=0;i<variable.length;i++)println(variable[i]);
 }
 
 void draw() {
-  background(0);
+  background(#05147D);
   bg.loadBars();
   bg.drawGraph();
   bg.drawBars();
   
   vs.showMenu();
-
 }
 
 void loadCountries(){
@@ -83,6 +84,7 @@ void loadCountries(){
 }
 
 //iterate through button array and check their checkHover() methods to see which one to activate
-void mouseClicked(){
-  
+void mousePressed(){
+  //if the mouse is pressed, check if the mouse was over a button
+  vs.checkButtons();
 }

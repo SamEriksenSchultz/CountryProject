@@ -12,8 +12,9 @@ class VarSelector {
     //creates button array, instansiates new button objects with their text and descriptions, as well as a pvector representing their position
     //the constants on this pvector are subject to change, to reflect a better size and feel
     buttons=new Button[16];
+    
     for(int i=0;i<buttons.length;i++){
-      PVector bPos=new PVector(pos.x+10,i*50+5);
+      PVector bPos=new PVector(pos.x+10,i*50+225);
       buttons[i]=new Button(variable[i],variable[i],bPos);
     }
   }
@@ -49,7 +50,7 @@ class VarSelector {
         pos.x-=speed;
     }
     
-    fill(150);
+    fill(#A2CDF2);
     noStroke();
     rect(pos.x,pos.y,350,1080);
     
@@ -60,6 +61,21 @@ class VarSelector {
   void drawButtons(){
     for(int i=0; i<buttons.length; i++){
       buttons[i].drawButton();
+    }
+  }
+  
+  //checks if buttons are being pressed, and updates them if they are/are not
+  //called in mousePressed()
+  void checkButtons(){
+    println("checking");
+    
+    for(int i=0; i<buttons.length; i++){
+      //if the button is being hovered over, then set it to active
+      if(buttons[i].checkHover()){
+        buttons[i].active=true;
+        //set the current var to be examined to the var from the button being pressed
+        bg.setCurrent(buttons[i].variable);
+      }else buttons[i].active=false;
     }
   }
 }
