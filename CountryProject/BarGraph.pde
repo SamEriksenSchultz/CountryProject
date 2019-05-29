@@ -24,7 +24,7 @@ class BarGraph {
   
   
   //responsible for final graphing elements
-  void drawGraph(){
+  void drawGraph() {
     stroke(#7A7A7A);
     strokeWeight(5);
     //draws x axis

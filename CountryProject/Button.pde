@@ -37,9 +37,9 @@ class Button {
   //responsible for drawing the text overlay and button graphic
   //takes in colors for easy access in VarSelector
   
-  void drawButton(){
+  void drawButton(float x){
     //updates the button to the position of the VarSelector
-    position.x=vs.pos.x+10;
+    position.x=x+10;
     if(active){
       fill(200);
       rect(position.x,position.y,len,wid);

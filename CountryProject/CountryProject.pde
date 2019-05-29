@@ -16,11 +16,12 @@ Map<String,String>variableDescription;
 String varCurrent;
 
 BarGraph bg;
-
+ScatterGraph sg;
 VarSelector vs;
 
 void setup() {
   bg=new BarGraph();
+  sg=new ScatterGraph();
       
   variable[0]="Population";
   variable[1]="Area (sq. mi.)";
@@ -68,18 +69,23 @@ void setup() {
 
 void draw() {
   background(#292929);
+  sg.loadPlots();
   bg.loadBars();
-  bg.drawGraph();
-  bg.drawBars();
-  
+  if(vs.getSwitch() == 1) {
+    bg.drawGraph();
+    bg.drawBars();
+  } else if(vs.getSwitch() == -1) {
+    sg.setCurrent("GDP ($ per capita)","Infant mortality (per 1000 births)");
+    sg.drawGraph();
+    sg.drawPlots();
+  }
   vs.showMenu();
 }
 
 void loadCountries(){
   //create json array and iterate through to create all the countries
-  //JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject\\countryCompareData.json");
-  JSONArray data=loadJSONArray("Desktop/CountryCompare/countryCompareData.json");
-  //JSONArray data=loadJSONArray("C:\\Users\\samer\\OneDrive\\Desktop\\countryCompareData.json");
+  JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject\\countryCompareData.json");
+  //JSONArray data=loadJSONArray("Desktop/CountryCompare/countryCompareData.json");
   for(int i=0;i<227;i++){countryList.add(new Country(data.getJSONObject(i)));}
 }
 

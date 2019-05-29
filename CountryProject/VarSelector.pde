@@ -6,8 +6,12 @@ class VarSelector {
   //array that represents the buttons for each selectable variable
   Button[]buttons;
   
+  //Detrmines the graph that will be displayed
+  int graphSwitch = 0;
+  
   VarSelector(){
     pos=new PVector(-350,0);
+    graphSwitch = 1;
     
     //creates button array, instansiates new button objects with their text and descriptions, as well as a pvector representing their position
     //the constants on this pvector are subject to change, to reflect a better size and feel
@@ -19,8 +23,10 @@ class VarSelector {
     }
   }
   
+  int getSwitch() {
+    return graphSwitch;
+  }
  //checks if mouse is far enough to the left to activate
-  
   boolean checkActive(){
     //checks if mouse is pass the threshold
     if(mouseX<50)
@@ -54,7 +60,7 @@ class VarSelector {
     noStroke();
     rect(pos.x,pos.y,350,1080);
     
-    drawButtons();
+    drawButtons(pos.x);
   }
   
   //draws all the buttons and their corresponding information
