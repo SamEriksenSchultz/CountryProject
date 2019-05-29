@@ -84,8 +84,8 @@ void draw() {
 
 void loadCountries(){
   //create json array and iterate through to create all the countries
-  JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject\\countryCompareData.json");
-  //JSONArray data=loadJSONArray("Desktop/CountryCompare/countryCompareData.json");
+  //JSONArray data=loadJSONArray("C:\\Users\\grayw\\Desktop\\CountryProject\\countryCompareData.json");
+  JSONArray data=loadJSONArray("Desktop/CountryCompare/countryCompareData.json");
   for(int i=0;i<227;i++){countryList.add(new Country(data.getJSONObject(i)));}
 }
 

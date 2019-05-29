@@ -45,6 +45,12 @@ class BarGraph {
     //draws horizontal axis label
     textSize(25);
     text("Countries",900,960);  
+    
+    translate(100,775);
+    rotate(-HALF_PI);
+    text(varCurrent,0,0);
+    rotate(HALF_PI);
+    translate(-100,-775);
   }
   
   //draws bars on bargraph

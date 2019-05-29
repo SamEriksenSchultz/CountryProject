@@ -3,6 +3,8 @@
 
 class Button {
   
+  Button b;
+  
   //represents the buttons position on the coordinate plane (top left)
   PVector position;
   
@@ -24,6 +26,26 @@ class Button {
     this.info=info;
     
     len=325;
+    wid=45;
+  }
+  
+  //constructor for non-variable buttons
+  Button(String var,PVector pos){
+    position=pos;
+    variable=var;
+    
+    len=225;
+    wid=45;
+  }
+  
+  Button(String var, PVector pos, Button b){
+    position=pos;
+    
+    variable=var;
+    
+    this.b=b;
+    
+    len=50;
     wid=45;
   }
   
@@ -51,6 +73,16 @@ class Button {
       fill(255);
       text(variable,position.x+5,position.y+5,position.x+len-5,position.y+wid-5);
     }
+    
+    //draws x and y selector buttons, excluding bargraph and the switch graph button
+    /*if(vs.getSwitch()==-1 && variable!="Switch Graph" && !(vs.pos.x<-340)){
+      fill(#C44919);
+      rect(position.x+len+15,position.y,50,wid);
+      rect(position.x+len+80,position.y,50,wid);
+      fill(255);
+      text("X",position.x+len+30,position.y+30);
+      text("Y",position.x+len+95,position.y+30);
+    }*/
   }
   
   
@@ -62,5 +94,7 @@ class Button {
     }
     return false;
   }
+  
+  
   
 }
