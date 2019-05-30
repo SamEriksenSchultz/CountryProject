@@ -56,11 +56,18 @@ class BarGraph {
   //draws bars on bargraph
   void drawBars(){
     float y;
+    
     for(int i=0;i<bars.length;i++){
       //calculate proprotional bar height based on the max value of the dataset, accounting for graph size
-      y=bars[i].getCountryData(varCurrent)/getMax(varCurrent)*-675;
-      //iterates through bar array and displays them
-      bars[i].display(i*7.5+159,920,6,y);
+      
+      if(varCurrent=="Net migration"){
+        y=bars[i].getCountryData(varCurrent)/getMax(varCurrent)*-337;
+        bars[i].display(i*7.5+159,920-337,6,y);
+      }else{ 
+        y=bars[i].getCountryData(varCurrent)/getMax(varCurrent)*-675;
+        //iterates through bar array and displays them
+        bars[i].display(i*7.5+159,920,6,y);
+      }
     }
     
     //draw advanced stats after to prevent them from being covered by later bars
