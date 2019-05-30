@@ -76,6 +76,10 @@ void draw() {
     bg.drawBars();
   } else if(vs.getSwitch() == -1) {
     sg.setCurrent("GDP ($ per capita)","Infant mortality (per 1000 births)");
+    //sg.setCurrent("GDP ($ per capita)","Literacy (%)");
+    //sg.setCurrent("Agriculture","Industry");
+    //sg.setCurrent("GDP ($ per capita)","Phones (per 1000)");
+    
     sg.drawGraph();
     sg.drawPlots();
   }

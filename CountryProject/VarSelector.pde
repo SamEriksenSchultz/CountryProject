@@ -6,8 +6,8 @@ class VarSelector {
   //array that represents the buttons for each selectable variable
   Button[]buttons;
   
-  Button[]selectableX;
-  Button[]selectableY;
+  //Button[]selectableX;
+  //Button[]selectableY;
   
   //Detrmines the graph that will be displayed
   int graphSwitch = 0;
@@ -25,8 +25,8 @@ class VarSelector {
     //the constants on this pvector are subject to change, to reflect a better size and feel
     buttons=new Button[16];
     
-    selectableX=new Button[16];
-    selectableY=new Button[16];
+    //selectableX=new Button[16];
+    //selectableY=new Button[16];
     
     for(int i=0;i<buttons.length;i++){
       PVector bPos=new PVector(pos.x+10,i*50+225);
@@ -94,8 +94,8 @@ class VarSelector {
   void drawButtons(){
     for(int i=0; i<buttons.length; i++){
       buttons[i].drawButton(pos.x);
-      selectableX[i].drawButton(pos.x);
-      selectableY[i].drawButton(pos.x);
+      //selectableX[i].drawButton(pos.x);
+      //selectableY[i].drawButton(pos.x);
     }
     graphSwitcher.drawButton(pos.x);
   }
